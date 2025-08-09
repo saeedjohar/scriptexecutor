@@ -1,6 +1,7 @@
 #!/bin/sh
 
-BUILDROOT=buildroot-2019.11.1
+# download buildroot from https://buildroot.org/download.html and extract it, change the following accordingly
+BUILDROOT=buildroot-2025.05 
 # Supported targets: cmhybrid (supports cm1 cm3), cm4
 TARGET=cm4
 
@@ -12,6 +13,11 @@ if [ ! -e $BUILDROOT ]; then
 fi
 
 #
+# To delete old config 
+#
+# make -C buildroot-2025.05/ distclean
+
+#
 # Tell buildroot we have extra files in our external directory
 # and use our scriptexecute_defconfig configuration file 
 #
@@ -20,9 +26,24 @@ if [ ! -e $BUILDROOT/.config ]; then
 fi
 
 #
+# To edit the .config in menuconfig that was saved with scriptexecute_${TARGET}_defconfig
+#
+make -C $BUILDROOT menuconfig
+
+#
+# To save the config to the defconfig.
+#
+# make -C $BUILDROOT savedefconfig
+
+#
+# Most accurate way to save it into the right defconfig is where 'scriptexecute_cm4_defconfig' is the name of new defconfig
+#
+# make BR2_EXTERNAL=../scriptexecute BR2_DEFCONFIG=../scriptexecute/configs/scriptexecute_cm4_defconfig savedefconfig
+
+#
 # Build everything
 #
-make -C $BUILDROOT
+make -j$(nproc) -C $BUILDROOT
 
 #
 # Copy the files we are interested in from buildroot's "output/images" directory
