@@ -1,2 +1,7 @@
-/buildroot-2017.02
-/buildroot-2025.05
+/buildroot*
+/output*/*.elf
+/output*/*.dtb*
+/output*/*.bin
+/output*/overlays/
+/output*/*.dat
+/output*/*.img
