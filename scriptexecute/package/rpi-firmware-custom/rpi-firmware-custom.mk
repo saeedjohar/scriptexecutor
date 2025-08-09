@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-RPI_FIRMWARE_CUSTOM_VERSION = 995e9f03d17ab09a8821feb85cee368f29d80f89
+RPI_FIRMWARE_CUSTOM_VERSION = 154e61a689f294b2ca025641f3f768cc484cc0dc #995e9f03d17ab09a8821feb85cee368f29d80f89
 RPI_FIRMWARE_CUSTOM_SITE = $(call github,raspberrypi,firmware,$(RPI_FIRMWARE_CUSTOM_VERSION))
 RPI_FIRMWARE_CUSTOM_LICENSE = BSD-3c
 RPI_FIRMWARE_CUSTOM_LICENSE_FILES = boot/LICENCE.broadcom
@@ -40,8 +40,8 @@ define RPI_FIRMWARE_CUSTOM_INSTALL_IMAGES_CMDS
 	$(INSTALL) -D -m 0644 $(@D)/boot/fixup.dat $(BINARIES_DIR)/rpi-firmware/fixup.dat
 	$(INSTALL) -D -m 0644 $(@D)/boot/start4.elf $(BINARIES_DIR)/rpi-firmware/start4.elf
 	$(INSTALL) -D -m 0644 $(@D)/boot/fixup4.dat $(BINARIES_DIR)/rpi-firmware/fixup4.dat
-	$(INSTALL) -D -m 0644 package/rpi-firmware/config.txt $(BINARIES_DIR)/rpi-firmware/config.txt
-	$(INSTALL) -D -m 0644 package/rpi-firmware/cmdline.txt $(BINARIES_DIR)/rpi-firmware/cmdline.txt
+#  	$(INSTALL) -D -m 0644 package/rpi-firmware/config.txt $(BINARIES_DIR)/rpi-firmware/config.txt
+#  	$(INSTALL) -D -m 0644 package/rpi-firmware/cmdline.txt $(BINARIES_DIR)/rpi-firmware/cmdline.txt
 	$(RPI_FIRMWARE_CUSTOM_INSTALL_DTB)
 	$(RPI_FIRMWARE_CUSTOM_INSTALL_DTB_OVERLAYS)
 endef
